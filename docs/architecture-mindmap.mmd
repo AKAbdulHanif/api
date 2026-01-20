@@ -1,0 +1,36 @@
+mindmap
+  root((Continuous Compliance Codebase))
+    UI (Vue 3 + Vite + Pinia + PrimeVue)
+      HTTP Layer
+        Axios instances (auth, guest)
+        useDataApi/useGuestApi
+        Transforms (decamelize out, camelcase in)
+      Authentication
+        Login form (cookie-based)
+        SSO providers and initiate
+      Catalogs Feature
+        Catalog list/view/create/edit/delete
+        Group/Control modals and part edits
+        Shared delete composable (useCatalogDelete)
+      Other Features
+        SSP, Assessments, Evidence, Profiles, Components
+    API (Go + Echo + GORM + Postgres)
+      Configuration
+        DB, JWT, CORS, WebBaseURL
+        SSO and Email configs
+      Authentication
+        /auth/login (JWT cookie)
+        /auth/token (OAuth2 password)
+        SSO providers/initiate/callback
+      OSCAL Catalogs
+        Catalogs/Groups/Controls CRUD
+        Cascade delete implementation
+        Root groups query and traversal
+      Relational Models
+        User (bcrypt, last login)
+        OSCAL entities (SSP, assessments, POAM, profiles)
+      Metrics
+        Prometheus counters/instrumentation
+      Testing
+        Integration tests (Echo + Postgres container)
+        SDK integration suite (client/server)
