@@ -11724,7 +11724,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/oscal.ProfileHandler"
+                            "$ref": "#/definitions/oscal.BuildByPropsRequest"
                         }
                     }
                 ],
@@ -11732,7 +11732,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/handler.GenericDataResponse-oscal_ProfileHandler"
+                            "$ref": "#/definitions/handler.GenericDataResponse-oscal_BuildByPropsResponse"
                         }
                     },
                     "400": {
@@ -18406,6 +18406,19 @@ const docTemplate = `{
                 }
             }
         },
+        "handler.GenericDataResponse-oscal_BuildByPropsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "Items from the list response",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/oscal.BuildByPropsResponse"
+                        }
+                    ]
+                }
+            }
+        },
         "handler.GenericDataResponse-oscal_ImportResponse": {
             "type": "object",
             "properties": {
@@ -18712,6 +18725,47 @@ const docTemplate = `{
                 }
             }
         },
+        "oscal.BuildByPropsRequest": {
+            "type": "object",
+            "properties": {
+                "catalogId": {
+                    "type": "string"
+                },
+                "matchStrategy": {
+                    "description": "all | any",
+                    "type": "string"
+                },
+                "rules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/oscal.rule"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "oscal.BuildByPropsResponse": {
+            "type": "object",
+            "properties": {
+                "controlIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "profile": {
+                    "$ref": "#/definitions/oscalTypes_1_1_3.Profile"
+                },
+                "profileId": {
+                    "type": "string"
+                }
+            }
+        },
         "oscal.CreateInventoryItemRequest": {
             "type": "object",
             "properties": {
@@ -18816,6 +18870,24 @@ const docTemplate = `{
         },
         "oscal.ProfileHandler": {
             "type": "object"
+        },
+        "oscal.rule": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "ns": {
+                    "type": "string"
+                },
+                "operator": {
+                    "description": "equals | contains | regex | in",
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
         },
         "oscalTypes_1_1_3.Action": {
             "type": "object",
