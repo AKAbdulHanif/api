@@ -23,6 +23,9 @@ func RegisterHandlers(server *api.Server, logger *zap.SugaredLogger, db *gorm.DB
 	evidenceHandler := NewEvidenceHandler(logger, db, config)
 	evidenceHandler.Register(server.API().Group("/evidence"))
 
+	poamHandler := NewPoamItemsHandler(logger, db)
+	poamHandler.Register(server.API().Group("/poam-items"))
+
 	userHandler := NewUserHandler(logger, db)
 
 	adminGroup := server.API().Group("/admin/users")
